@@ -1,5 +1,5 @@
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
 class Solution {
     /** 
@@ -10,7 +10,8 @@ class Solution {
      *
      */
     boolean compare(Collection<ObjectA> col1, Collection<ObjectA> col2) {
-        HashSet<ObjectA> hashSet = new HashSet<>(col1);
+        // if ObjectsA are unique then it would be better to use HashSet instead of ArrayList
+        ArrayList<ObjectA> tempSet = new ArrayList<>(col1);
 
         // If length of collections are not equal then it is not necessary to compare them.
         // Return false in this case.
@@ -19,11 +20,11 @@ class Solution {
 
         //go thru collection 2 and compare with element in hashSet
         for (ObjectA element : col2) {
-            if (!hashSet.contains(element))
+            if (!tempSet.contains(element))
                 return false;
             else
                 //remove element to make sure that if element exist twice in one collection it exist twice in another
-                hashSet.remove(element);
+                tempSet.remove(element);
         }
 
         return true;
